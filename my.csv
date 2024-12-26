@@ -1,0 +1,6 @@
+date,region,category,sales,costs
+2024-01-01,North,A,1200,800
+2024-01-01,South,B,950,600
+2024-01-02,North,A,1350,900
+2024-01-02,South,A,1100,750
+2024-01-03,North,B,800,500
