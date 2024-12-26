@@ -73,7 +73,11 @@
         '';
       in
       {
-        packages.default = pkgs.writeScriptBin "process-data" program;
+        packages.default = pkgs.writeShellApplication {
+          name = "process-data";
+          runtimeInputs = [ pkgs.julia ];
+          text = program;
+        };
 
         apps.default = {
           type = "app";
