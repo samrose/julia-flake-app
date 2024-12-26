@@ -75,7 +75,7 @@
       {
         packages.default = pkgs.writeShellApplication {
           name = "process-data";
-          runtimeInputs = [ pkgs.julia ];
+          runtimeInputs = [ pkgs.julia-bin ];
           text = program;
         };
 
