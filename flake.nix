@@ -20,7 +20,11 @@
           
           SCRIPT="$1"
           shift
-          exec julia --startup-file=no "$SCRIPT" "$@"
+          
+          JULIA_DEPOT_PATH=$(mktemp -d)
+          trap 'rm -rf "$JULIA_DEPOT_PATH"' EXIT
+          
+          exec env JULIA_DEPOT_PATH="$JULIA_DEPOT_PATH" julia --startup-file=no "$SCRIPT" "$@"
         '';
       in
       {
