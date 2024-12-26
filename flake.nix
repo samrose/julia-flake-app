@@ -2,7 +2,7 @@
   description = "Julia data processing application";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -13,9 +13,11 @@
         
         program = ''
           #!/usr/bin/env julia
-          
-          using Pkg
-          Pkg.add(["DataFrames", "CSV"])
+
+          import Pkg
+          Pkg.add("DataFrames")
+          Pkg.add("CSV")
+
           using DataFrames, CSV
 
           abstract type DataSource end
@@ -67,9 +69,7 @@
               println(process(df, Summarize()))
           end
 
-          if abspath(PROGRAM_FILE) == @__FILE__
-              main()
-          end
+          main()
         '';
       in
       {
